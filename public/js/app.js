@@ -1,7 +1,8 @@
-$(document).ready(function () {
+$(document).ready(function() {
   const showMap = document.getElementById('map');
   let latitude;
   let longitude;
+  let $temperature = $('#temperature');
 
   // Función para acceder al api DarkSky
   let getApiWheater = (data) => {
@@ -9,19 +10,24 @@ $(document).ready(function () {
     console.log(data);
     // console.log(currentlyWheater.temperature);
     let temperatureFarenheit = currentlyWheater.temperature;
-    let temperatureCentigrados = (temperatureFarenheit-32)*5/(9.340);
+    let temperatureCentigrados = parseInt(((temperatureFarenheit - 32) * 5 / (9.340)), 10);
     // console.log(temperatureCentigrados); // 23° convertidos de farenheit
-    let humidity = currentlyWheater.humidity;
     let summary = currentlyWheater.summary;
+    console.log(summary);
+    let humidity = currentlyWheater.humidity;
     let summary2 = data.daily.summary;
     // console.log(summary2); // más info sobre el clima
-
-  }
+    // Añadiendo al dom
+    $temperature.append(`${temperatureCentigrados}`);
+    $('#summary').append(`<p>How is today?: ${summary}</p>`);
+    $('#humidity').append(`<p>Hummidity: ${humidity}</p>`);
+    $('#summary2').append(`<p>Info: ${summary2}</p>`);
+  };
 
   // En caso el usuario no acepte conocer ubicación
   let error = () => {
     console.log('no se ingresó nada');
-  }
+  };
 
   if (navigator.geolocation) {
     alert('Puedes usar geolocalización en tu dispositivo');
@@ -46,4 +52,7 @@ $(document).ready(function () {
     alert('No se pudo ubicarte');
   }
 
+  $('#predictions').on('click', function() {
+    window.location.href = 'views/week.html';
+  });
 });
