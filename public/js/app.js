@@ -30,7 +30,7 @@ $(document).ready(function() {
   };
 
   if (navigator.geolocation) {
-    alert('Puedes usar geolocalización en tu dispositivo');
+    // alert('Puedes usar geolocalización en tu dispositivo');
     let getPosition = (position) => {
       console.log(position.coords.latitude);
       console.log(position.coords.longitude);
