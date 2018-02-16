@@ -16,12 +16,11 @@ $(document).ready(function() {
     console.log(summary);
     let humidity = currentlyWheater.humidity;
     let summary2 = data.daily.summary;
-    // console.log(summary2); // más info sobre el clima
-    // Añadiendo al dom
-    $temperature.append(`${temperatureCentigrados}`);
-    $('#summary').append(`<p>How is today?: ${summary}</p>`);
-    $('#humidity').append(`<p>Hummidity: ${humidity}</p>`);
-    $('#summary2').append(`<p>Info: ${summary2}</p>`);
+
+    $('#temperature').text(`${temperatureCentigrados}º`);
+    $('#summary').text(summary);
+    $('#humidity').text(humidity);
+    $('#summary2').text(summary2);
   };
 
   // En caso el usuario no acepte conocer ubicación
